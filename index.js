@@ -1,13 +1,22 @@
 const express = require('express');
+const exphbs = require('express-handlebars');
+const path = require('path');
+
 var app = express();
 var router = express.Router();
 
 const home = require('./routes/index');
 const about = require('./routes/about');
 
-// app.get('/', (req, res) => {
-// 	res.end('server is running');
-// });
+app.engine(
+	'handlebars',
+	exphbs({
+		defaultLayout: 'main'
+	})
+);
+app.set('view engine', 'handlebars');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', home);
 app.use('/about', about);
