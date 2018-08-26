@@ -3,7 +3,8 @@ const router = express.Router();
 
 router.get('/', function(req, res) {
 	res.render('about/index', {
-		title: 'About'
+		title: 'About',
+		layout: 'secondary'
 	});
 });
 
